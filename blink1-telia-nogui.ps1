@@ -1,11 +1,11 @@
 $username = ""
 $password = ""
 
-$blink_delay = "500" # in milliseconds
+$blink_delay = "800" # in milliseconds
 $busy_delay = "10" # in seconds
 $error_delay = "10" # in seconds
 $exit_on_error = $false
-$reboot_color = '40,40,40'
+$error_color = '40,40,40'
 $blink1_tool = "/usr/local/bin/blink1-tool"
 
 # Office Hours
@@ -39,7 +39,7 @@ While ($validate -eq $null) {
     }
     else {
         Write-Host -BackgroundColor "Red" -ForegroundColor "Black" -Object " Pre-check: Failed to log in, exits script " -NoNewline; Write-Host -ForegroundColor "DarkGray" -Object "|"
-        & $blink1_tool --rgb=$reboot_color | Out-Null
+        & $blink1_tool --rgb=$error_color | Out-Null
         if ($exit_on_error) {
             exit
         }
@@ -90,7 +90,7 @@ While ($true) {
 
             if ($req.error -ne $false) {
                 Write-Host -BackgroundColor "Red" -ForegroundColor "Black" -Object " Failed to log in, exits script " -NoNewline; Write-Host -ForegroundColor "DarkGray" -Object "|"
-                & $blink1_tool --rgb=$reboot_color | Out-Null
+                & $blink1_tool --rgb=$error_color | Out-Null
                 if ($exit_on_error) {
                     exit
                 }
